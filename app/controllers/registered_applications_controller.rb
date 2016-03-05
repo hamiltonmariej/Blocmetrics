@@ -1,6 +1,6 @@
 class RegisteredApplicationsController < ApplicationController
   def index
-    @registered_applications = RegisteredApplication.all
+    @registered_applications = policy_scope(RegisteredApplication)
   end
 
   def show
@@ -12,9 +12,8 @@ class RegisteredApplicationsController < ApplicationController
   end
 
   def create
-    @registered_application = RegisteredApplication.new
-    @registered_application.name = params[:registered_application][:name]
-    @registered_application.url = params[:registered_application][:url]
+    @registered_application = current_user.registered_applications.build(registered_application_params)
+    @registered_application.user = current_user
 
     if @registered_application.save
       flash[:notice] = "Your application is registered."
@@ -31,12 +30,11 @@ class RegisteredApplicationsController < ApplicationController
 
   def update
     @registered_application = RegisteredApplication.find(params[:id])
-    @registered_application.name = params[:registered_application][:name]
-    @registered_application.url = params[:registered_application][:url]
+    @registered_application.assign_attributes(registered_application_params)
 
     if @registered_application.save
-      flash[:notice] = "Registered application was updated."
-      redirect_to @registered_application
+      flash[:notice] = "Your application information was updated."
+      redirect_to registered_applications_path
     else
       flash.now[:alert] = "There was an error saving the updates to your registered application.  Please try again."
       render :edit
@@ -52,5 +50,10 @@ class RegisteredApplicationsController < ApplicationController
       flash.now[:alert] = "There was an error deleting this registered application.  Please try again."
       render :show
     end
+  end
+
+  private
+  def registered_application_params
+    params.require(:registered_application).permit(:name, :url, :user_id)
   end
 end

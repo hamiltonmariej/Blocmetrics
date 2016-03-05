@@ -6,7 +6,7 @@ gem 'rails', '4.2.5'
 gem 'railties', '4.2.5'
 # Use sqlite3 as the database for Active Record
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.18.4'
   gem 'rails_12factor'
 end
 
@@ -22,8 +22,10 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '>= 4.1.0'
-
+gem 'devise'
+gem 'pundit'
 gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -35,6 +37,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'delayed_job_active_record'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -50,6 +53,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'factory_girl_rails', '~>4.0'
+  gem 'faker', '~>1.6'
   gem 'shoulda'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

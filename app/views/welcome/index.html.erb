@@ -1,0 +1,12 @@
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome to Blocmetrics!</h1>
+      <p>Track events from all your web applications in one place!</p><br>
+      <p>Register as a user to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+<% end %>
