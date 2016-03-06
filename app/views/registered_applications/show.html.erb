@@ -4,6 +4,10 @@
   <div class="col-md-8">
     <p><%= @registered_application.url %></p>
   </div>
+  <div class="col-md-8">
+    <h3>Total Count of Events</h3>
+    <p><%= @registered_application.events.group(:name).count %></p><br />
+  </div>
   <div class="col-md-4">
     <%= link_to 'Edit App', edit_registered_application_path(@registered_application), class: 'btn btn-success' %>
     <%= link_to 'Delete App', @registered_application, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you sure you want to delete this registered application?'} %>
