@@ -1,5 +1,5 @@
 # Create Users
-10.times do
+# 10.times do
   # require 'faker'
 #   standard = User.create!(
 #     name: Faker::Name.name,
