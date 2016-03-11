@@ -3,11 +3,15 @@ Rails.application.routes.draw do
   resources :registered_applications
 
   namespace :api, defaults: { format: :json } do
-    resources :events, only: [:create]
+    controller :events, path: '/events' do
+      match 'post_action', via: [:get, :post, :options]
+    end
   end
-
-  match '/events', to: 'events#preflight', via: [:options]
-    resources :events, only: [:create]
+  #   resources :events, only: [:create, :options]
+  # end
+  #
+  # match '/events', to: 'events#preflight', via: [:options]
+  #   resources :events, only: [:post, :create]
 
   get 'about' => 'welcome#about'
   get 'welcome/index'
