@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
 # need to check on this...would I use UserMailer instead?
   def send_devise_notification(notification, *args)
-    devise_mailer.send(notification, self, *args).deliver_later
+    devise_mailer.send(notification, self, *args)
   end
 
   enum role: [:standard, :admin]
