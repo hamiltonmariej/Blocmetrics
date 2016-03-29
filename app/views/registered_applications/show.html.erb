@@ -1,4 +1,11 @@
 <h1><%= @registered_application.name %></h1>
+<p>URL: <%= link_to @registered_application.url, @registered_application.url %><br />
+  <%= javascript_include_tag "https://www.google.com/jsapi", "chartkick" %>
+<%= pie_chart @registered_application.events.group(:name).count %>
+<%= line_chart @registered_application.events.group_by_day(:created_at).count %>
+<br>
+<br>
+
 
 <div class="row">
   <div class="col-md-8">

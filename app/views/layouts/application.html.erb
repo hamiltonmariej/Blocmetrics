@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>Blocmetrics</title>
+  <meta charset="utf-8">
+  <meta http-equiv="=X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -43,10 +45,10 @@
   <div class="container navbar-fixed-top">
     <div class="navbar-link navbar-right">
       <% if user_signed_in? %>
-      Signed in as: <strong><%= current_user.email %></strong> |
-      <%= link_to 'Edit Profile', edit_user_registration_path %> | <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+        <strong>Hello <%= (current_user.name || current_user.email) %>!</strong> |
+        <span class="glyphicon glyphicon-pencil"></span><%= link_to 'Edit Profile', edit_user_registration_path %> | <span class="glyphicon glyphicon-log-out"></span> <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
       <% else %>
-      <%= link_to "Sign In", new_user_session_path%> | <%= link_to "Sign Up", new_user_registration_path %>
+        <%= link_to "Sign In", new_user_session_path%> | <%= link_to "Sign Up", new_user_registration_path %>
       <% end %>
   </div>
 </div>
