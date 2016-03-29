@@ -1,28 +1,23 @@
-== README
+##Blocmetrics
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Blocmetrics is a simple API that features:
+*A client-side JavaScript snippet that allows a user to track events on their website.
+*A server-side API that captures and saves those events to a database.
+*A Rails application that displays the captured event data for a user.
 
-Things you may want to cover:
+###How to Use
 
-* Ruby version
+1. Visit https:// and Sign Up as a user.
+2. Register your domain to your tracked applications list.
+3. Copy and paste the snippet below to your application layout file to track any event in your application.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+````
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+<script type="text/javascript">
+ var blocmetrics = {};
+ blocmetrics.report = function(eventName) {
+  var event = {name: eventName };
+  $.post('http://localhost:3000/api/events', event);
+  blocmetrics.report('some dynamic event');
+</script>
+````
